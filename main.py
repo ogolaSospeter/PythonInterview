@@ -47,5 +47,5 @@ class Buyers(Products):
 
 prod  =  Buyers()
 # prod.getProductSold()
-prod.getListProducts(id=5,title=3,price=15.99)
+prod.getListProducts(id=5,title=3,price=15)
 
