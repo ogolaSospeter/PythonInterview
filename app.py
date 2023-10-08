@@ -43,16 +43,15 @@ users = [
 ]
 
 class Users(Resource):
+    def get(self, id):
+        user_id = int(id) - 1  # Adjusting to 0-based index
+        if 0 <= user_id < len(users):
+            return users[user_id]
+        else:
+            return {"error": "User not found"}, 404
 
-    def get(self):
-        return {'users': users}, 200
 
-
-    def post(self):
-        new_user = request.get_json()
-        users.append(new_user)
-        return {'users': users}, 201
-api.add_resource(Users, '/users')
+api.add_resource(Users, '/users/<id>')
 
 
 
