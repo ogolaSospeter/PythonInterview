@@ -6,13 +6,27 @@ class Products():
         pass
 
     def get_Products(self):
-        response = request.get("https://fakestoreapi.com/products")
+        response = request.get("https://fakestoreapi.com/users")
         return response.json()
 
     def get_product(self,id):
         for product in self.get_Products():
             if product["id"] == id:
                 return product
+            else:
+                continue
+
+    #get the json doc and display each product separately with its details in a formatted way
+    def get_product_details(self,id):
+        try:
+            product = self.get_product(id)
+            for key,value in product.items():
+                print(f"{key}: {value}")
+        except TypeError:
+            print("Product not found.")
+        finally:
+            pass
+
 
 class Buyers(Products):
     def getProductSold(self):
@@ -47,5 +61,6 @@ class Buyers(Products):
 
 prod  =  Buyers()
 # prod.getProductSold()
-prod.getListProducts(id=5,title=3,price=15)
+# prod.getListProducts(id=5,title=3,price=15)
+prod.get_product_details(2)
 
